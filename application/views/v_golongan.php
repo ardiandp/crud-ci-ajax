@@ -21,8 +21,7 @@
             <thead>
                 <tr>
                     <th>Kode</th>
-                    <th>Nama Barang</th>
-                    <th>Harga</th>
+                    <th>Nama Barang</th>                   
                     <th style="text-align: right;">Aksi</th>
                 </tr>
             </thead>
@@ -152,15 +151,15 @@
 <script type="text/javascript" src="<?php echo base_url().'assets/js/jquery.dataTables.js'?>"></script>
 <script type="text/javascript">
     $(document).ready(function(){
-        tampil_data_barang();   //pemanggilan fungsi tampil barang.
+        tampil_data_golongan();   //pemanggilan fungsi tampil barang.
         
         $('#mydata').dataTable();
          
         //fungsi tampil barang
-        function tampil_data_barang(){
+        function tampil_data_golongan(){
             $.ajax({
                 type  : 'GET',
-                url   : '<?php echo base_url()?>index.php/barang/data_barang',
+                url   : '<?php echo base_url()?>index.php/golongan/golongan_tampil',
                 async : true,
                 dataType : 'json',
                 success : function(data){
@@ -168,12 +167,11 @@
                     var i;
                     for(i=0; i<data.length; i++){
                         html += '<tr>'+
-                                '<td>'+data[i].barang_kode+'</td>'+
-                                '<td>'+data[i].barang_nama+'</td>'+
-                                '<td>'+data[i].barang_harga+'</td>'+
+                                '<td>'+data[i].kode+'</td>'+
+                                '<td>'+data[i].nama+'</td>'+                                
                                 '<td style="text-align:right;">'+
-                                    '<a href="javascript:;" class="btn btn-info btn-xs item_edit" data="'+data[i].barang_kode+'">Edit</a>'+' '+
-                                    '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="'+data[i].barang_kode+'">Hapus</a>'+
+                                    '<a href="javascript:;" class="btn btn-info btn-xs item_edit" data="'+data[i].kode+'">Edit</a>'+' '+
+                                    '<a href="javascript:;" class="btn btn-danger btn-xs item_hapus" data="'+data[i].nama+'">Hapus</a>'+
                                 '</td>'+
                                 '</tr>';
                     }
@@ -226,7 +224,7 @@
                     $('[name="nabar"]').val("");
                     $('[name="harga"]').val("");
                     $('#ModalaAdd').modal('hide');
-                    tampil_data_barang();
+                    tampil_data_golongan();
                 }
             });
             return false;
@@ -247,7 +245,7 @@
                     $('[name="nabar_edit"]').val("");
                     $('[name="harga_edit"]').val("");
                     $('#ModalaEdit').modal('hide');
-                    tampil_data_barang();
+                    tampil_data_golongan();
                 }
             });
             return false;
@@ -263,7 +261,7 @@
                     data : {kode: kode},
                     success: function(data){
                             $('#ModalHapus').modal('hide');
-                            tampil_data_barang();
+                            tampil_data_golongan();
                     }
                 });
                 return false;

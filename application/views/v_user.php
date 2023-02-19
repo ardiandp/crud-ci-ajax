@@ -240,7 +240,7 @@
                 type : "POST",
                 url  : "<?php echo base_url('index.php/usercontroller/update_user')?>",
                 dataType : "JSON",
-                data : {kobar:kobar , nabar:nabar, harga:harga},
+                data : {username:username , email:email, password:password},
                 success: function(data){
                     $('[name="username"]').val("");
                     $('[name="email"]').val("");

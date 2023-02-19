@@ -8,6 +8,12 @@ class Golongan extends CI_Controller {
 		$this->load->model('Modelgolongan');
 	}
 
+	public function index()
+	{
+		$data['judul']="Data Golongan";
+		$this->load->view('v_golongan', $data, FALSE);
+	}
+
 	public function golongan_tampil()
 	{
 		$data['gol']=$this->Modelgolongan->golongan_tampil()->result();
